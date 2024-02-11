@@ -1,17 +1,17 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import React, { useCallback, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { useFonts } from "expo-font";
+import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import React, { useCallback, useEffect } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { useFonts } from 'expo-font'
 // import {
 //   useFonts,
 //   SpaceGrotesk_700Bold,
 //   SpaceGrotesk_500Medium,
 // } from "@expo-google-fonts/space-grotesk";
-import * as SplashScreen from "expo-splash-screen";
-import { LinearGradient } from "expo-linear-gradient";
+import * as SplashScreen from 'expo-splash-screen'
+import { LinearGradient } from 'expo-linear-gradient'
 
 const SplashScreens = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   // const [fontsLoaded, fontError] = useFonts({
   //   SpaceGrotesk_700Bold,
@@ -19,41 +19,41 @@ const SplashScreens = () => {
   // });
 
   const [fontsLoaded, fontError] = useFonts({
-    SpaceGroteskSemiBold: require("../fonts/SpaceGrotesk-SemiBold.ttf"),
-    SpaceGroteskBold: require("../fonts/SpaceGrotesk-Bold.ttf"),
-    SpaceGroteskMedium: require("../fonts/SpaceGrotesk-Medium.ttf"),
-  });
+    SpaceGroteskSemiBold: require('../fonts/SpaceGrotesk-SemiBold.ttf'),
+    SpaceGroteskBold: require('../fonts/SpaceGrotesk-Bold.ttf'),
+    SpaceGroteskMedium: require('../fonts/SpaceGrotesk-Medium.ttf')
+  })
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
+      await SplashScreen.hideAsync()
     }
 
     setTimeout(() => {
-      navigation.navigate("Welcome");
-    }, 3000);
-  });
+      navigation.navigate('Welcome')
+    }, 3000)
+  })
 
   useEffect(() => {
-    onLayoutRootView();
-  }, [fontsLoaded, fontError]);
+    onLayoutRootView()
+  }, [fontsLoaded, fontError])
 
   if (!fontsLoaded) {
-    return null;
+    return null
   }
 
   return (
     <ImageBackground
-      source={require("../../assets/images/welcome/reporter.jpg")}
+      source={require('../../assets/images/welcome/reporter.jpg')}
       className="flex-1 justify-center items-center"
     >
       <LinearGradient
-        colors={["rgba(0,85,0,0.95)", "rgba(0,85,0,0.95)"]}
+        colors={['rgba(0,85,0,0.95)', 'rgba(0,85,0,0.95)']}
         style={{
-          position: "absolute",
+          position: 'absolute',
           bottom: 0,
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%'
         }}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
@@ -64,9 +64,9 @@ const SplashScreens = () => {
         </Text>
       </View>
     </ImageBackground>
-  );
-};
+  )
+}
 
-export default SplashScreens;
+export default SplashScreens
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})
