@@ -1,4 +1,3 @@
-
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -19,47 +18,49 @@ const Tab = createBottomTabNavigator();
 const AppNavigation = () => {
   const { colorScheme, toggleColorScheme } = useColorScheme();
   const TabNavigator = () => {
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarIcon: ({ focused }) => {
-          let iconName;
-          if (route.name === "Home") {
-            iconName = "home";
-          } else if (route.name === "Discover") {
-            iconName = "compass-outline";
-          } else if (route.name === "Saved") {
-            iconName = "bookmark-outline";
-          } else if (route.name === "Search") {
-            iconName = "search-outline";
-          }
+    return (
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+            if (route.name === "Home") {
+              iconName = "home";
+            } else if (route.name === "Discover") {
+              iconName = "compass-outline";
+            } else if (route.name === "Saved") {
+              iconName = "bookmark-outline";
+            } else if (route.name === "Search") {
+              iconName = "search-outline";
+            }
 
-          const customeSize = 25;
+            const customeSize = 25;
 
-          return (
-            <Ionicons
-              name={iconName}
-              size={customeSize}
-              color={focused ? "green" : "gray"}
-            />
-          );
-        },
-        tabBarActiveTintColor: "green",
-        tabBarInactiveTintColor: "gray",
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontFamily: "SpaceGroteskMedium",
-        },
-        tabBarStyle: {
-          backgroundColor: colorScheme === "dark" ? "black" : "white",
-        },
-      })}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Discover" component={DiscoverScreen} />
-      <Tab.Screen name="Saved" component={SavedScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
-    </Tab.Navigator>;
+            return (
+              <Ionicons
+                name={iconName}
+                size={customeSize}
+                color={focused ? "green" : "gray"}
+              />
+            );
+          },
+          tabBarActiveTintColor: "green",
+          tabBarInactiveTintColor: "gray",
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontFamily: "SpaceGroteskMedium",
+          },
+          tabBarStyle: {
+            backgroundColor: colorScheme === "dark" ? "black" : "white",
+          },
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Discover" component={DiscoverScreen} />
+        <Tab.Screen name="Saved" component={SavedScreen} />
+        <Tab.Screen name="Search" component={SearchScreen} />
+      </Tab.Navigator>
+    );
   };
   return (
     <NavigationContainer>
@@ -76,7 +77,7 @@ const AppNavigation = () => {
           options={{ animation: "slide_from_bottom" }}
         />
 
-        <Stack.Screen name="HomeTab" component={TabNavigator} />
+        <Stack.Screen name="HomeTabs" component={TabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

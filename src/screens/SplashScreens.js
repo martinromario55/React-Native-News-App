@@ -2,16 +2,26 @@ import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import React, { useCallback, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from "expo-font";
+// import {
+//   useFonts,
+//   SpaceGrotesk_700Bold,
+//   SpaceGrotesk_500Medium,
+// } from "@expo-google-fonts/space-grotesk";
 import * as SplashScreen from "expo-splash-screen";
 import { LinearGradient } from "expo-linear-gradient";
 
 const SplashScreens = () => {
   const navigation = useNavigation();
 
+  // const [fontsLoaded, fontError] = useFonts({
+  //   SpaceGrotesk_700Bold,
+  //   SpaceGrotesk_500Medium,
+  // });
+
   const [fontsLoaded, fontError] = useFonts({
-    "SpaceGrotesk-Medium": require("../fonts/SpaceGrotesk-Medium.ttf"),
-    "SpaceGrotesk-SemiBold": require("../fonts/SpaceGrotesk-SemiBold.ttf"),
-    "SpaceGrotesk-Bold": require("../fonts/SpaceGrotesk-Bold.ttf"),
+    SpaceGroteskSemiBold: require("../fonts/SpaceGrotesk-SemiBold.ttf"),
+    SpaceGroteskBold: require("../fonts/SpaceGrotesk-Bold.ttf"),
+    SpaceGroteskMedium: require("../fonts/SpaceGrotesk-Medium.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
