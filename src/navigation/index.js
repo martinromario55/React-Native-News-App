@@ -8,7 +8,7 @@ import HomeScreen from "../screens/HomeScreen";
 import DiscoverScreen from "../screens/DiscoverScreen";
 import SavedScreen from "../screens/SavedScreen";
 import SearchScreen from "../screens/SearchScreen";
-import SplashScreens from "../screens/SplashScreen";
+import SplashScreens from "../screens/SplashScreens";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import NewsDetailsScreen from "../screens/NewsDetailsScreen";
 import { Ionicons } from "@expo/vector-icons";
