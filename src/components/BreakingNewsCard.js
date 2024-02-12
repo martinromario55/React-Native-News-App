@@ -18,7 +18,7 @@ const BreakingNewsCard = ({ item, handleClick }) => {
       <View className="relative">
         <Image
           source={{
-            uri: item.urlToImage
+            uri: item.urlToImage || 'https://via.placeholder.com/200x200'
           }}
           style={{
             width: Math.round(width * 0.8),

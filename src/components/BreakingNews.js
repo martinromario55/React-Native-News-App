@@ -10,7 +10,7 @@ const BreakingNews = ({ data, label }) => {
   const navigation = useNavigation()
 
   const handleClick = (item) => {
-    navigation.navigate('NewsDetails', item)
+    navigation.navigate('NewsDetailsScreen', item)
   }
   return (
     <View>

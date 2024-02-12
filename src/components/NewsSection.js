@@ -28,17 +28,17 @@ const NewsSection = ({ newsProps }) => {
 
   const toggleBookmarkandSave = async (item, index) => {
     try {
-      const saveArticles = await AsyncStorage.getItem('saveArticles')
-      let savedArticlesArray = saveArticles ? JSON.parse(saveArticles) : []
+      const savedArticles = await AsyncStorage.getItem('savedArticles')
+      let savedArticlesArray = savedArticles ? JSON.parse(savedArticles) : []
 
       const isArticleBookmarked = savedArticlesArray.some(
-        (saveArticles) => saveArticles.url === item.url
+        (savedArticles) => savedArticles.url === item.url
       )
 
       if (!isArticleBookmarked) {
         savedArticlesArray.push(item)
         await AsyncStorage.setItem(
-          'saveArticles',
+          'savedArticles',
           JSON.stringify(savedArticlesArray)
         )
         const updatedStatus = [...bookmarkStatus]
@@ -50,13 +50,15 @@ const NewsSection = ({ newsProps }) => {
         )
 
         await AsyncStorage.setItem(
-          'saveArticles',
+          'savedArticles',
           JSON.stringify(updatedSavedArticlesArray)
         )
         const updatedStatus = [...bookmarkStatus]
         updatedStatus[index] = false
         setBookmarkStatus(updatedStatus)
       }
+      // console.log('NewsSection', savedArticles)
+      // console.log('Bookmarked', isArticleBookmarked)
     } catch (error) {
       console.log('Error saving news', error)
     }
@@ -66,7 +68,7 @@ const NewsSection = ({ newsProps }) => {
     useCallback(() => {
       const loadSavedArticles = async () => {
         try {
-          const savedArticles = await AsyncStorage.getItem('saveArticles')
+          const savedArticles = await AsyncStorage.getItem('savedArticles')
           const savedArticlesArray = savedArticles
             ? JSON.parse(savedArticles)
             : []
@@ -82,8 +84,9 @@ const NewsSection = ({ newsProps }) => {
       loadSavedArticles()
     }, [urlList, navigation])
   )
-
+  // console.log(bookmarkStatus)
   const renderItem = ({ item, index }) => {
+    // console.log(bookmarkStatus[index])
     return (
       <TouchableOpacity
         className="mb-4 mx-4 space-y-1"

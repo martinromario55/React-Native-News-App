@@ -69,7 +69,10 @@ const HomeScreen = () => {
     try {
       setIsLoadingRecommendedNews(true)
       fetchRecommendedNews().then((data) => {
-        setRecommentedNews(data.articles)
+        const fileteredNews = data.articles.filter(
+          (article) => article.title !== '[Removed]'
+        )
+        setRecommentedNews(fileteredNews)
         setIsLoadingRecommendedNews(false)
       })
     } catch (error) {

@@ -1,22 +1,13 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, Text, View } from 'react-native'
 import React, { useCallback, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
-// import {
-//   useFonts,
-//   SpaceGrotesk_700Bold,
-//   SpaceGrotesk_500Medium,
-// } from "@expo-google-fonts/space-grotesk";
+
 import * as SplashScreen from 'expo-splash-screen'
 import { LinearGradient } from 'expo-linear-gradient'
 
 const SplashScreens = () => {
   const navigation = useNavigation()
-
-  // const [fontsLoaded, fontError] = useFonts({
-  //   SpaceGrotesk_700Bold,
-  //   SpaceGrotesk_500Medium,
-  // });
 
   const [fontsLoaded, fontError] = useFonts({
     SpaceGroteskSemiBold: require('../fonts/SpaceGrotesk-SemiBold.ttf'),
@@ -38,7 +29,7 @@ const SplashScreens = () => {
     onLayoutRootView()
   }, [fontsLoaded, fontError])
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded && !fontError) {
     return null
   }
 
@@ -68,5 +59,3 @@ const SplashScreens = () => {
 }
 
 export default SplashScreens
-
-const styles = StyleSheet.create({})

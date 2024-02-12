@@ -24,6 +24,21 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [["expo-font"]]
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            [
+              "./src/fonts/SpaceGrotesk-Bold.ttf",
+              "./src/fonts/SpaceGrotesk-Light.ttf",
+              "./src/fonts/SpaceGrotesk-Medium.ttf",
+              "./src/fonts/SpaceGrotesk-Regular.ttf",
+              "./src/fonts/SpaceGrotesk-SemiBold.ttf"
+            ]
+          ]
+        }
+      ]
+    ]
   }
 }

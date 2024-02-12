@@ -65,14 +65,14 @@ const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="HomeTabs"
+        initialRouteName="SplashS"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SplashS" component={SplashScreens} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen
-          name="NewsDetails"
+          name="NewsDetailsScreen"
           component={NewsDetailsScreen}
           options={{ animation: 'slide_from_bottom' }}
         />

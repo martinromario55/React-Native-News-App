@@ -23,9 +23,12 @@ const SavedScreen = () => {
   const [savedArticles, setSavedArticles] = useState([])
   const [bookmarkStatus, setBookmarkStatus] = useState([])
   const [urlList, setUrlList] = useState([])
+  const [isBookmarked, setIsBookmarked] = useState(false)
 
+  // console.log(savedArticles)
+  // console.log(bookmarkStatus)
   const handleClick = (item) => {
-    navigation.navigate('NewsDetailsScreen', { item })
+    navigation.navigate('NewsDetailsScreen', item)
   }
 
   useEffect(() => {
@@ -35,17 +38,17 @@ const SavedScreen = () => {
 
   const toggleBookmarkandSave = async (item, index) => {
     try {
-      const saveArticles = await AsyncStorage.getItem('saveArticles')
-      let savedArticlesArray = saveArticles ? JSON.parse(saveArticles) : []
+      const savedArticles = await AsyncStorage.getItem('savedArticles')
+      let savedArticlesArray = savedArticles ? JSON.parse(savedArticles) : []
 
       const isArticleBookmarked = savedArticlesArray.some(
-        (saveArticles) => saveArticles.url === item.url
+        (savedArticles) => savedArticles.url === item.url
       )
-
+      // setBookmarkStatus(isArticleBookmarked)
       if (!isArticleBookmarked) {
         savedArticlesArray.push(item)
         await AsyncStorage.setItem(
-          'saveArticles',
+          'savedArticles',
           JSON.stringify(savedArticlesArray)
         )
         const updatedStatus = [...bookmarkStatus]
@@ -57,7 +60,7 @@ const SavedScreen = () => {
         )
 
         await AsyncStorage.setItem(
-          'saveArticles',
+          'savedArticles',
           JSON.stringify(updatedSavedArticlesArray)
         )
         const updatedStatus = [...bookmarkStatus]
@@ -73,12 +76,16 @@ const SavedScreen = () => {
     useCallback(() => {
       const loadSavedArticles = async () => {
         try {
-          const savedArticles = await AsyncStorage.getItem('saveArticles')
+          const savedArticles = await AsyncStorage.getItem('savedArticles')
           const savedArticlesArray = savedArticles
             ? JSON.parse(savedArticles)
             : []
-
           setSavedArticles(savedArticlesArray)
+
+          const isArticleBookmarkedList = urlList.map((url) =>
+            savedArticlesArray.some((savedArticle) => savedArticle.url === url)
+          )
+          setBookmarkStatus(isArticleBookmarkedList)
         } catch (error) {
           console.log('Error loading saved articles', error)
         }
@@ -86,6 +93,16 @@ const SavedScreen = () => {
       loadSavedArticles()
     }, [urlList, navigation])
   )
+
+  const clearSavedArticles = async () => {
+    try {
+      await AsyncStorage.removeItem('savedArticles')
+      setSavedArticles([])
+      // console.log('clear:', savedArticles)
+    } catch (error) {
+      console.log('Error Clearing Saved Articles', error)
+    }
+  }
 
   const renderItem = ({ item, index }) => {
     return (
@@ -155,7 +172,10 @@ const SavedScreen = () => {
           Saved Articles
         </Text>
 
-        <TouchableOpacity className="bg-green-800 py-2 px-4 rounded-lg">
+        <TouchableOpacity
+          className="bg-green-800 py-2 px-4 rounded-lg"
+          onPress={clearSavedArticles}
+        >
           <Text
             className="text-white dark:text-white"
             style={{ fontFamily: 'SpaceGroteskMedium' }}

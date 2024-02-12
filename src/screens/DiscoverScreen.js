@@ -19,6 +19,7 @@ import { useQuery } from '@tanstack/react-query'
 import NewsSection from '../components/NewsSection'
 import Loading from '../components/Loading'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { Font } from 'expo-font'
 
 const DiscoverScreen = () => {
   const { colorScheme, toggleColorScheme } = useColorScheme()
@@ -26,6 +27,15 @@ const DiscoverScreen = () => {
   const [activeCategory, setActiveCategory] = useState('business')
   const [discoverNews, setDiscoverNews] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+
+  async function loadFonts() {
+    await Font.loadAsync({
+      SpaceGroteskSemiBold: require('../fonts/SpaceGrotesk-SemiBold.ttf'),
+      SpaceGroteskBold: require('../fonts/SpaceGrotesk-Bold.ttf'),
+      SpaceGroteskMedium: require('../fonts/SpaceGrotesk-Medium.ttf')
+    })
+    loadFonts()
+  }
 
   // useEffect(() => {
   //   console.log('activeCategory', activeCategory)
