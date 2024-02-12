@@ -100,6 +100,7 @@ const NewsSection = ({ newsProps }) => {
               width: hp(9),
               height: hp(10)
             }}
+            className="rounded-lg"
           />
 
           {/* Author */}
