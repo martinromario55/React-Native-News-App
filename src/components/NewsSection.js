@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   FlatList,
   Image,
@@ -155,5 +156,3 @@ const NewsSection = ({ newsProps }) => {
 }
 
 export default NewsSection
-
-const styles = StyleSheet.create({})

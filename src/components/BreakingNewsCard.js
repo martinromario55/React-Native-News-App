@@ -66,5 +66,3 @@ const BreakingNewsCard = ({ item, handleClick }) => {
 }
 
 export default BreakingNewsCard
-
-const styles = StyleSheet.create({})

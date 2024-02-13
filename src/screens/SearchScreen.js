@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -8,7 +7,7 @@ import {
   Keyboard
 } from 'react-native'
 import React, { useState } from 'react'
-import { debounce } from 'lodash'
+// import { debounce } from 'lodash'
 import { useNavigation } from '@react-navigation/native'
 import { fetchSearchNews } from '../../utils/NewsApi'
 import { XMarkIcon } from 'react-native-heroicons/outline'
@@ -17,7 +16,7 @@ import Loading from '../components/Loading'
 import NewsSection from '../components/NewsSection'
 
 const SearchScreen = () => {
-  const navigation = useNavigation()
+  // const navigation = useNavigation()
   const [isLoading, setIsLoading] = useState(false)
   const [results, setResults] = useState([])
   const [searchTerm, setSearchTerm] = useState('')

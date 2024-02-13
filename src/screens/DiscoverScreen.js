@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native'
 import CategoriesCard from '../components/CategoriesCard'
 import { categories } from '../constants'
 import { fetchDiscoverNews } from '../../utils/NewsApi'
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
 import NewsSection from '../components/NewsSection'
 import Loading from '../components/Loading'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
@@ -161,5 +161,3 @@ const DiscoverScreen = () => {
 }
 
 export default DiscoverScreen
-
-const styles = StyleSheet.create({})

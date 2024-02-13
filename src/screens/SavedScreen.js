@@ -1,19 +1,11 @@
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  View,
-  FlatList,
-  Image
-} from 'react-native'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Text, TouchableOpacity, View, FlatList, Image } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useColorScheme } from 'nativewind'
 import { StatusBar } from 'expo-status-bar'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import Loading from '../components/Loading'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { BookmarkSquareIcon } from 'react-native-heroicons/outline'
 
@@ -23,12 +15,11 @@ const SavedScreen = () => {
   const [savedArticles, setSavedArticles] = useState([])
   const [bookmarkStatus, setBookmarkStatus] = useState([])
   const [urlList, setUrlList] = useState([])
-  const [isBookmarked, setIsBookmarked] = useState(false)
 
   // console.log(savedArticles)
   // console.log(bookmarkStatus)
   const handleClick = (item) => {
-    navigation.navigate('NewsDetailsScreen', item)
+    navigation.navigate('NewsDetailsScreen', { item })
   }
 
   useEffect(() => {
@@ -106,56 +97,59 @@ const SavedScreen = () => {
 
   const renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity
-        className="mb-4 space-y-1"
-        key={index}
-        onPress={() => handleClick(item)}
-      >
-        {/* Image */}
-        <View className="flex-row justify-start w-[100%] shadow-sm">
-          <Image
-            source={{
-              uri: item.urlToImage || 'https://via.placeholder.com/200x200'
-            }}
-            style={{
-              width: hp(9),
-              height: hp(10)
-            }}
-            className="rounded-lg"
-          />
+      <>
+        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+        <TouchableOpacity
+          className="mb-4 space-y-1"
+          key={index}
+          onPress={() => handleClick(item)}
+        >
+          {/* Image */}
+          <View className="flex-row justify-start w-[100%] shadow-sm">
+            <Image
+              source={{
+                uri: item.urlToImage || 'https://via.placeholder.com/200x200'
+              }}
+              style={{
+                width: hp(9),
+                height: hp(10)
+              }}
+              className="rounded-lg"
+            />
 
-          {/* Author */}
-          <View className="w-[70%] pl-4 justify-center space-y-1">
-            <Text className="text-xs font-bold text-gray-900 dark:text-neutral-300">
-              {item?.author?.length > 20
-                ? item?.author?.slice(0, 20) + '...'
-                : item?.author}
-            </Text>
+            {/* Author */}
+            <View className="w-[70%] pl-4 justify-center space-y-1">
+              <Text className="text-xs font-bold text-gray-900 dark:text-neutral-300">
+                {item?.author?.length > 20
+                  ? item?.author?.slice(0, 20) + '...'
+                  : item?.author}
+              </Text>
 
-            {/* Title */}
-            <Text className="text-neutral-800 capitalize max-w-[90%] dark:text-white">
-              {item?.title?.length > 50
-                ? item?.title?.slice(0, 50) + '...'
-                : item?.title}
-            </Text>
+              {/* Title */}
+              <Text className="text-neutral-800 capitalize max-w-[90%] dark:text-white">
+                {item?.title?.length > 50
+                  ? item?.title?.slice(0, 50) + '...'
+                  : item?.title}
+              </Text>
 
-            {/* Date */}
-            <Text className="text-xs text-gray-700 dark:text-neutral-300">
-              {new Date(item?.publishedAt).toDateString()}
-            </Text>
+              {/* Date */}
+              <Text className="text-xs text-gray-700 dark:text-neutral-300">
+                {new Date(item?.publishedAt).toDateString()}
+              </Text>
+            </View>
+            {/* Bookmark icon */}
+            <View className="w-[10%] justify-center">
+              <TouchableOpacity
+                onPress={() => toggleBookmarkandSave(item, index)}
+              >
+                <BookmarkSquareIcon
+                  color={bookmarkStatus[index] ? 'green' : 'gray'}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-          {/* Bookmark icon */}
-          <View className="w-[10%] justify-center">
-            <TouchableOpacity
-              onPress={() => toggleBookmarkandSave(item, index)}
-            >
-              <BookmarkSquareIcon
-                color={bookmarkStatus[index] ? 'green' : 'gray'}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </>
     )
   }
 

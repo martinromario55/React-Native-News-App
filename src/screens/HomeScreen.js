@@ -1,14 +1,13 @@
 import {
   SafeAreaView,
   StyleSheet,
-  Text,
   View,
   StatusBar,
   ScrollView
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useColorScheme } from 'nativewind'
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
 import { fetchBreakingNews, fetchRecommendedNews } from '../../utils/NewsApi'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
@@ -117,5 +116,3 @@ const HomeScreen = () => {
 }
 
 export default HomeScreen
-
-const styles = StyleSheet.create({})

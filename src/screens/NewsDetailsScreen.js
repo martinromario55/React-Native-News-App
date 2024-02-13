@@ -2,7 +2,6 @@ import {
   ActivityIndicator,
   Dimensions,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View
 } from 'react-native'
@@ -15,12 +14,16 @@ import {
 } from 'react-native-heroicons/outline'
 import { WebView } from 'react-native-webview'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { StatusBar } from 'expo-status-bar'
+import { useColorScheme } from 'nativewind'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
 const NewsDetailsScreen = () => {
   const navigation = useNavigation()
+  const { colorScheme, toggleColorScheme } = useColorScheme()
+
   const {
     params: { item }
   } = useRoute()
@@ -96,6 +99,7 @@ const NewsDetailsScreen = () => {
   return (
     <>
       <View className="w-full flex-row justify-between items-center px-4 pt-10 pb-4 bg-white">
+        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
         <View className="bg-gray-100 p-2 rounded-full items-center justify-center">
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <ChevronLeftIcon size={'25'} color={'gray'} strokeWidth={3} />
@@ -139,5 +143,3 @@ const NewsDetailsScreen = () => {
 }
 
 export default NewsDetailsScreen
-
-const styles = StyleSheet.create({})

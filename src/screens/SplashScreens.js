@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ImageBackground, Text, View } from 'react-native'
 import React, { useCallback, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'

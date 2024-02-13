@@ -21,5 +21,3 @@ const MiniHeader = ({ label }) => {
 }
 
 export default MiniHeader
-
-const styles = StyleSheet.create({})
