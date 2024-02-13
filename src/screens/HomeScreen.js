@@ -1,11 +1,6 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  StatusBar,
-  ScrollView
-} from 'react-native'
+import { SafeAreaView, View, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { StatusBar } from 'expo-status-bar'
 import { useColorScheme } from 'nativewind'
 // import { useQuery } from '@tanstack/react-query'
 import { fetchBreakingNews, fetchRecommendedNews } from '../../utils/NewsApi'

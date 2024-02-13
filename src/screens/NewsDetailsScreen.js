@@ -1,10 +1,10 @@
 import {
   ActivityIndicator,
   Dimensions,
-  StyleSheet,
   TouchableOpacity,
   View
 } from 'react-native'
+import { StatusBar } from 'expo-status-bar'
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import {
@@ -14,7 +14,6 @@ import {
 } from 'react-native-heroicons/outline'
 import { WebView } from 'react-native-webview'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { StatusBar } from 'expo-status-bar'
 import { useColorScheme } from 'nativewind'
 
 const width = Dimensions.get('window').width
